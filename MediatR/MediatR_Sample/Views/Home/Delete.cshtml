@@ -1,0 +1,65 @@
+﻿@model Models.Models.Category
+
+@{
+    ViewData["Title"] = "Delete";
+    var d = ViewData["text"];
+    bool isExist = (bool)d;
+}
+
+<style>
+    h3 {
+        direction: rtl;
+        padding: 50px;
+        text-align: center;
+    }
+
+    dt, dd {
+        padding: 50px;
+    }
+
+    .custom-style {
+        background: #eee;
+        text-align: center;
+        position: relative;
+        bottom: 47px;
+    }
+
+    .dt-custom {
+        text-align: center;
+        background: #dfdddd;
+    }
+</style>
+@if (!isExist)
+{
+    <h3>آیا از حذف گروه "@Model.BookGenre" اطمینان دارید؟</h3>
+    <div>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.BookGenre) :
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.BookGenre)
+            </dd>
+            <dt class="col-sm-12 dt-custom">
+                @Html.DisplayNameFor(model => model.GenreDescription)
+            </dt>
+            <dd class="col-sm-12 custom-style">
+                @Html.DisplayFor(model => model.GenreDescription)
+            </dd>
+        </dl>
+
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="GenreId" />
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            <a asp-action="Index">Back to List</a>
+        </form>
+    </div>
+}
+else
+{
+    <h3>به دلیل داشتن زیر گروه پست قادر به حذف گروه "@Model.BookGenre" نمی باشید !</h3>
+    <a asp-action="Index">Back to List</a>
+}
+
+
