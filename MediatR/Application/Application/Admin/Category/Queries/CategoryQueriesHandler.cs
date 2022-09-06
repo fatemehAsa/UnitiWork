@@ -44,7 +44,7 @@ namespace Application.Application.Admin.Category.Queries
         public async Task<bool> Handle(IsExistCategoryInPostQueries request, CancellationToken cancellationToken)
         {
             //return await _context.tbl_Posts.AnyAsync(c=>c.GenreId==request.Id);
-            return await _unitOfWork.PostRepository.GetAsNoTracking(el => el.GenreId == request.Id).AnyAsync(cancellationToken);
+            return await _unitOfWork.PostRepository.GetAsNoTracking(el => el.GenreId == request.Id,el=>el.OrderBy(e=>e.BookDescription)).AnyAsync(cancellationToken);
         }
 
         
